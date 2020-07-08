@@ -1,0 +1,38 @@
+<nz-page-header>
+    <nz-page-header-title>{{pageTitle | uppercase}}</nz-page-header-title>
+    <nz-page-header-extra>
+        <!-- button create -->
+        <button nz-button nzType="primary" nzShape="round">
+        <i nz-icon nzType="plus"></i>Thêm loại phòng
+      </button>
+    </nz-page-header-extra>
+    <!--content-->
+    <nz-page-header-content>
+        <!-- data table -->
+        <nz-table #roomTypeService [nzData]="dataSource" [nzLoading]="isConfirmLoading">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên Loại phòng</th>
+
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of roomTypeService.data; index as i; ">
+                    <td>{{i+1}}</td>
+                    <td>{{data.RoomTypeName}}</td>
+
+                    <td>
+                        <button nz-button nzType="primary" nzShape="round">
+                <i nz-icon nzType="edit"></i>Sửa
+              </button>
+                        <button nz-button nzType="danger" nzShape="round">
+                <i nz-icon nzType="delete"></i>Xóa
+              </button>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </nz-page-header-content>
+</nz-page-header>

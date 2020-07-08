@@ -1,0 +1,39 @@
+<nz-page-header>
+    <nz-page-header-title>{{pageTitle | uppercase}}</nz-page-header-title>
+    <nz-page-header-extra>
+        <!-- button create -->
+        <button nz-button nzType="primary" nzShape="round" (click)="createEmployeePosition()">
+        <i nz-icon nzType="plus"></i>Thêm chức vụ
+      </button>
+    </nz-page-header-extra>
+    <!--content-->
+    <nz-page-header-content>
+        <!-- data table -->
+        <nz-table #employeePositionTable [nzData]="dataSource" [nzLoading]="isConfirmLoading">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên chức vụ</th>
+
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of employeePositionTable.data; index as i; ">
+                    <td>{{i+1}}</td>
+                    <td>{{data.EmployeePositionName}}</td>
+
+                    <td>
+
+                        <button nz-button nzType="primary" nzShape="round" (click)="editEmployeePosition(data)">
+                <i nz-icon nzType="edit"></i>Sửa
+              </button>
+                        <button nz-button nzType="danger" nzShape="round" (click)="confirmDelete(data)">
+                <i nz-icon nzType="delete"></i>Xóa
+              </button>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </nz-page-header-content>
+</nz-page-header>

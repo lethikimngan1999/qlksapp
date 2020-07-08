@@ -1,0 +1,54 @@
+<nz-page-header>
+    <nz-page-header-title>{{pageTitle | uppercase}}</nz-page-header-title>
+    <nz-page-header-extra>
+        <!-- button create -->
+        <button nz-button nzType="primary" nzShape="round" (click)="createCustomer()">
+        <i nz-icon nzType="plus"></i>Thêm khách hàng
+      </button>
+    </nz-page-header-extra>
+    <!--content-->
+    <nz-page-header-content>
+        <!-- data table -->
+        <nz-table #customerTable [nzData]="dataSource" [nzLoading]="isConfirmLoading">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Họ và Tên</th>
+                    <th>Ngày Sinh</th>
+                    <th>Giới Tính</th>
+                    <th>CMND/Hộ chiếu</th>
+                    <th>SĐT</th>
+                    <th>Quốc tịch</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of customerTable.data; index as i; ">
+                    <td>{{i+1}}</td>
+                    <td>{{data.FirstName}} {{data.LastName}}</td>
+                    <td>{{data.DateOfBirth | date :'dd/MM/yyyy'}}</td>
+                    <td>
+                        <ng-container *ngIf="data.Gender == 'False'">
+                            Nam
+                        </ng-container>
+                        <ng-container *ngIf="data.Gender == 'True'">
+                            Nữ
+                        </ng-container>
+                    </td>
+                    <td>{{data.IdentityCardNumber}}</td>
+                    <td>{{data.PhoneNumber}}</td>
+                    <td>{{data.Nationality}}</td>
+                    <td>
+                        <button nz-button nzType="default" nzShape="round">
+                <i nz-icon nzType="eye"></i>Chi tiết 
+              </button>
+                        <button nz-button nzType="primary" nzShape="round" (click)="editCustomer(data)">
+                <i nz-icon nzType="edit"></i>Sửa
+              </button>
+
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </nz-page-header-content>
+</nz-page-header>

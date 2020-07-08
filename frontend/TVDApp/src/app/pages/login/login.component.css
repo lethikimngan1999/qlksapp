@@ -1,0 +1,42 @@
+.login-form {
+    max-width: 300px;
+    margin: auto;
+    padding-top: 50px;
+}
+
+.login-form-button {
+    width: 100%;
+}
+
+.alert-login {
+    margin-bottom: 30px;
+}
+
+.alert-login .ant-alert-error .ant-alert-message {
+    color: red!important;
+}
+
+.inner-content {
+    padding: 90px 0 0;
+    text-align: center;
+}
+
+.page-header {
+    color: #fff;
+    text-align: center;
+}
+
+.login-page .ant-layout-footer {
+    color: #fff
+}
+
+.login-page .ant-layout-footer {
+    text-align: center;
+    width: 100%;
+}
+
+.lock-icon {
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 50px;
+}

@@ -1,0 +1,147 @@
+<!-- Tao hoac chinh sua thong tin nhan vien -->
+<form nz-form [formGroup]="validateForm" class="ant-advanced-search-form">
+    <div nz-row [nzGutter]="24">
+        <div nz-col [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label nzRequired>Số CMND:</nz-form-label>
+                <nz-form-control nzHasFeedback [nzErrorTip]="employeeIdErrorTpl">
+                    <input nz-input placeholder="Số chứng minh nhân dân" [(ngModel)]="employeeDto.IdentityCardNumber" type="text" formControlName="_ipText_identityCardNumber" />
+                    <ng-template #employeeIdErrorTpl let-control>
+                        <ng-container *ngIf="control.hasError('maxlength')">Số chứng minh nhân dân tối đa 20 kí tự</ng-container>
+                        <ng-container *ngIf="control.hasError('minlength')">Số chứng minh nhân dân ít nhất 8 kí tự</ng-container>
+                        <ng-container *ngIf="control.hasError('required')">Vui lòng nhập Số chứng minh nhân dân!</ng-container>
+                    </ng-template>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label nzRequired>Họ lót</nz-form-label>
+                <nz-form-control nzHasFeedback nzErrorTip="Vui lòng nhập Họ lót nhân viên!">
+                    <input nz-input placeholder="Họ lót nhân viên" [(ngModel)]="employeeDto.LastName" type="text" formControlName="_ipText_firstName" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label nzRequired>Tên nhân viên</nz-form-label>
+                <nz-form-control nzHasFeedback nzErrorTip="Vui lòng nhập tên nhân viên!">
+                    <input nz-input placeholder="Tên nhân viên" [(ngModel)]="employeeDto.FirstName" type="text" formControlName="_ipText_lastName" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+    <div nz-row [nzGutter]="24">
+        <div nz-col [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label nzRequired>Ngày sinh</nz-form-label>
+                <nz-form-control nzHasFeedback nzErrorTip="Vui lòng nhập ngày sinh nhân viên!">
+                    <nz-date-picker formControlName="_ipDate_dateOfBirth" [(ngModel)]="employeeDto.DateOfBirth" [nzFormat]="dateFormat" nzPlaceHolder="Chọn ngày sinh"></nz-date-picker>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <!-- //radio -->
+        <div nz-col [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label nzRequired>Giới tính</nz-form-label>
+                <nz-form-control nzErrorTip="Vui lòng chọn giới tính nhân viên!">
+                    <nz-radio-group formControlName="_rdo_gender" [(ngModel)]="employeeDto.Gender">
+                        <label nz-radio nzValue="False">Nam</label>
+                        <label nz-radio nzValue="True">Nữ</label>
+                    </nz-radio-group>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label nzRequired>Email</nz-form-label>
+                <nz-form-control nzHasFeedback [nzErrorTip]="emailErrorTpl">
+                    <input nz-input placeholder="Email" [(ngModel)]="employeeDto.Email" type="text" formControlName="_ipText_email" />
+                    <ng-template #emailErrorTpl let-control>
+                        <ng-container *ngIf="control.hasError('email')">
+                            Vui lòng nhập email hợp lệ!
+                        </ng-container>
+                        <ng-container *ngIf="control.hasError('required')">
+                            Vui lòng nhập email nhân viên!
+                        </ng-container>
+                    </ng-template>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label nzRequired>Số điện thoại</nz-form-label>
+                <nz-form-control nzHasFeedback [nzErrorTip]="phoneNumberIdErrorTpl">
+                    <input nz-input placeholder="SĐT" [(ngModel)]="employeeDto.PhoneNumber" type="text" formControlName="_ipText_phoneNumber" />
+                    <ng-template #phoneNumberIdErrorTpl let-control>
+                        <ng-container *ngIf="control.hasError('maxlength')">Số điện thoại tối đa 13 kí tự</ng-container>
+                        <ng-container *ngIf="control.hasError('required')">Vui lòng nhập Số điện thoại nhân viên!</ng-container>
+                    </ng-template>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label nzRequired>Chức vụ</nz-form-label>
+                <nz-form-control>
+                    <nz-select style="width: 100%" nzPlaceHolder="Chọn chức vụ cho nhân viên" nzShowSearch formControlName="_selectBox_employeePostition" [(ngModel)]="employeeDto.EmployeePositionId">
+                        <ng-container *ngFor="let item of listEmployeePosition">
+                            <nz-option nzLabel="{{item.EmployeePositionName}}" nzValue="{{item.EmployeePositionId}}"></nz-option>
+                        </ng-container>
+                    </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label>Lương cơ bản</nz-form-label>
+                <nz-form-control>
+                    <nz-input-number [(ngModel)]="employeeDto.BasicSalary" [nzMin]="0" [nzMax]="1000000000" [nzStep]="0.1" formControlName="_ipNumber_basicSalary"></nz-input-number>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label nzRequired>Ngày ký HĐLĐ</nz-form-label>
+                <nz-form-control nzHasFeedback nzErrorTip="Vui lòng nhập ngày ký HĐLĐ!">
+                    <nz-date-picker formControlName="_ipDate_dateStartOfWork" [(ngModel)]="employeeDto.DateStartWork" [nzFormat]="dateFormat" nzPlaceHolder="Chọn ngày ký HĐLĐ"></nz-date-picker>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+
+    </div>
+
+
+
+    <div nz-row [nzGutter]="24">
+        <div nz-col [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label>Địa chỉ</nz-form-label>
+                <nz-form-control>
+                    <textarea rows="4" nz-input [(ngModel)]="employeeDto.Address" placeholder="Địa chỉ" formControlName="_ipTextarea_address"></textarea>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label>Hình ảnh</nz-form-label>
+                <nz-form-control>
+                    <nz-upload class="avatar-uploader" nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" nzName="_ipUpload_image" nzListType="picture-card" [nzShowUploadList]="false" [nzBeforeUpload]="beforeUpload" (nzChange)="handleChange($event)">
+                        <ng-container *ngIf="!avatarUrl">
+                            <i class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'plus'"></i>
+                            <div class="ant-upload-text">Upload</div>
+                        </ng-container>
+                        <img *ngIf="avatarUrl" [src]="avatarUrl" style="width: 100%" />
+                    </nz-upload>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+    <div nz-row [nzGutter]="24">
+
+    </div>
+    <div *nzModalFooter>
+        <button nz-button nzType="default" (click)="handleCancelButton()">Hủy</button>
+        <button nz-button nzType="primary" [nzLoading]="isConfirmLoading" [disabled]="!validateForm.valid" (click)="handleSubmitButton()">Lưu</button>
+    </div>
+</form>

@@ -1,0 +1,122 @@
+<nz-page-header>
+    <nz-page-header-title>{{pageTitle | uppercase}}</nz-page-header-title>
+    <nz-page-header-extra>
+        <!-- button create -->
+        <button class="btn-create" nz-button nzType="primary" nzShape="round" (click)="createUser()">
+      <i nz-icon nzType="plus"></i>Thêm Tài Khoản Nhân viên
+    </button>
+    </nz-page-header-extra>
+    <!--content-->
+    <nz-page-header-content>
+        <!-- data table -->
+        <nz-table #userTable nzBordered [nzData]="listUser" [nzLoading]="isConfirmLoading">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên đăng nhập</th>
+                    <th>Tên đầy đủ</th>
+                    <th>Số CMND</th>
+                    <th>Email</th>
+                    <th>Vai trò</th>
+                    <th>Status</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of userTable.data; index as i; ">
+                    <td>{{i+1}}</td>
+                    <td>{{data.UserName}}</td>
+                    <td>{{data.Employee.LastName}} {{data.Employee.FirstName}}</td>
+                    <td>{{data.Employee.IdentityCardNumber}}</td>
+                    <td>{{data.Employee.Email}}</td>
+                    <td>
+                        <ul>
+                            <ng-container *ngFor="let item of data.ListRoles">
+                                <li>{{item.Name}}</li>
+                            </ng-container>
+
+                        </ul>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="data.Status == 'Active'">
+                            <span class="active"><i nz-icon nzType="check-circle" nzTheme="outline"></i>Đang hoạt động</span>
+                        </ng-container>
+                        <ng-container *ngIf="data.Status == 'Locked'">
+                            <span class="locked"><i nz-icon nzType="lock" nzTheme="outline"></i>Đã khóa</span>
+                        </ng-container>
+                    </td>
+                    <td>
+                        <button nz-button nzType="primary" nzShape="round" (click)="editUser(data)">
+              <i nz-icon nzType="edit"></i>Sửa
+            </button>
+                        <button nz-button nzType="primary" nzShape="round" (click)="showModalRole(data)">
+              <i nz-icon nzType="setting"></i>Vai trò
+            </button>
+                        <button *ngIf="currentUser.Id != data.Id" (click)="resetPassword(data)" nz-button nzType="warning" nzShape="round">
+                <i nz-icon nzType="key"></i>Đặt lại mật khẩu
+              </button>
+                        <button nz-button nzType="danger" nzShape="round" (click)="lockAccount(data)">
+                <i nz-icon nzType="lock"></i>Khóa
+              </button>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </nz-page-header-content>
+</nz-page-header>
+
+<nz-page-header>
+    <nz-page-header-title>{{headerListUserLocked | uppercase}}</nz-page-header-title>
+
+    <!--content-->
+    <nz-page-header-content>
+        <!-- data table -->
+        <nz-table #userLockedTable nzBordered [nzData]="listUserAccountLocked" [nzLoading]="isConfirmLoading">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên đăng nhập</th>
+                    <th>Tên đầy đủ</th>
+                    <th>Số CMND</th>
+                    <th>Email</th>
+                    <th>Vai trò</th>
+                    <th>Status</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of userLockedTable.data; index as i; ">
+                    <td>{{i+1}}</td>
+                    <td>{{data.UserName}}</td>
+                    <td>{{data.Employee.LastName}} {{data.Employee.FirstName}}</td>
+                    <td>{{data.Employee.IdentityCardNumber}}</td>
+                    <td>{{data.Employee.Email}}</td>
+                    <td>
+                        <ul>
+                            <ng-container *ngFor="let item of data.ListRoles">
+                                <li> {{item.Name}}</li>
+                            </ng-container>
+
+                        </ul>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="data.Status == 'Active'">
+                            <span class="active"><i nz-icon nzType="check-circle" nzTheme="outline"></i>Đang hoạt động</span>
+                        </ng-container>
+                        <ng-container *ngIf="data.Status == 'Locked'">
+                            <span class="locked"><i nz-icon nzType="lock" nzTheme="outline"></i>Đã khóa</span>
+                        </ng-container>
+                    </td>
+                    <td>
+
+                        <button nz-button nzType="primary" nzShape="round" (click)="unLockAccount(data)">
+                 <i nz-icon nzType="unlock" nzTheme="outline"></i>Mở khóa tài khoản 
+                
+              </button>
+
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </nz-page-header-content>
+</nz-page-header>

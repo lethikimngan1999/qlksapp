@@ -1,0 +1,34 @@
+<nz-layout class="login-page">
+    <nz-content>
+        <div class="inner-content">
+            <i class="lock-icon" nz-icon nzType="unlock" nzTheme="outline"></i>
+            <h1 class="page-header">{{pageTitle | uppercase}}</h1>
+            <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+                <nz-alert class="alert-login" *ngIf="isShowMessage" nzType="error" nzMessage="Tên đăng nhập hoặc mật khẩu không đúng"></nz-alert>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback nzErrorTip="Vui lòng nhập tên đăng nhập!">
+                        <nz-input-group [nzPrefix]="prefixUser">
+                            <input type="text" nz-input formControlName="_ipText_username" placeholder="Tên đăng nhập" />
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback nzErrorTip="Vui lòng nhập mật khẩu!">
+                        <nz-input-group [nzPrefix]="prefixLock">
+                            <input type="password" nz-input formControlName="_ipText_password" placeholder="Mật khẩu" />
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control>
+                        <button nz-button class="login-form-button" [nzType]="'primary'">Login</button>
+
+                    </nz-form-control>
+                </nz-form-item>
+            </form>
+            <ng-template #prefixUser><i nz-icon nzType="user"></i></ng-template>
+            <ng-template #prefixLock><i nz-icon nzType="lock"></i></ng-template>
+        </div>
+    </nz-content>
+    <nz-footer style="text-align: center;">{{pageFooter | uppercase}}</nz-footer>
+</nz-layout>

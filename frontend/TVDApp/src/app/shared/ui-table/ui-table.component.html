@@ -1,0 +1,21 @@
+<nz-table #basicTable nzBordered [nzData]="uiData" [nzPageSize]="uiPs" [nzPageIndex]="(uiPi === 0 || !uiPi)? 1: uiPi">
+    <thead>
+        <tr>
+            <th *ngFor="let column of uiColumns" [nzWidth]="column.width">{{column.title}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data">
+            <td *ngFor="let column of uiColumns" [nzShowCheckbox]="column.type === 'checkbox'" [(nzChecked)]="data[column.index]">
+
+                <span *ngIf="!column.type">{{data[column.index]}}</span>
+
+                <a *ngIf="column.type === 'link'" href="{{data[column.index]}}"> {{data[column.format]}}</a>
+
+                <div *ngIf="column.buttons && column.buttons.length > 0">
+                    <a *ngFor="let button of column.buttons" nz-button nzGhost nzType="{{button.type}}" (click)="button.click(data)" style="margin-right: 5px">{{button.text}}</a>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

@@ -1,0 +1,54 @@
+<nz-page-header>
+    <nz-page-header-title>{{pageTitle | uppercase}}</nz-page-header-title>
+    <nz-page-header-extra>
+        <!-- button create -->
+        <button nz-button nzType="primary" nzShape="round" (click)="createEmployee()">
+        <i nz-icon nzType="plus"></i>Thêm nhân viên
+      </button>
+    </nz-page-header-extra>
+    <!--content-->
+    <nz-page-header-content>
+        <!-- data table -->
+        <nz-table #employeeTable [nzData]="dataSource" [nzLoading]="isConfirmLoading">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Họ và Tên</th>
+                    <th>Ngày Sinh</th>
+                    <th>Giới Tính</th>
+                    <th>SĐT</th>
+                    <th>Email</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of employeeTable.data; index as i; ">
+                    <td>{{i+1}}</td>
+                    <td>{{data.LastName}} {{data.FirstName}}</td>
+                    <td>{{data.DateOfBirth | date :'dd/MM/yyyy'}}</td>
+                    <td>
+                        <ng-container *ngIf="data.Gender == 'False'">
+                            Nam
+                        </ng-container>
+                        <ng-container *ngIf="data.Gender == 'True'">
+                            Nữ
+                        </ng-container>
+                    </td>
+                    <td>{{data.PhoneNumber}}</td>
+                    <td>{{data.Email}}</td>
+                    <td>
+                        <button nz-button nzType="default" nzShape="round" (click)="viewEmployee(data.EmployeeId)">
+                <i nz-icon nzType="eye"></i>Xem 
+              </button>
+                        <button nz-button nzType="primary" nzShape="round" (click)="editEmployee(data)">
+                <i nz-icon nzType="edit"></i>Sửa
+              </button>
+                        <button nz-button nzType="danger" nzShape="round" (click)="confirmDelete(data)">
+                <i nz-icon nzType="delete"></i>Xóa
+              </button>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </nz-page-header-content>
+</nz-page-header>

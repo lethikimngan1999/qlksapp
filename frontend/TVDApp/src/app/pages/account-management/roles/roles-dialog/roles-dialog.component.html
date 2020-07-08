@@ -1,0 +1,56 @@
+<!-- Tao hoac chinh sua thong tin nhan vien -->
+<form nz-form [formGroup]="validateForm" class="ant-advanced-search-form">
+    <div nz-row [nzGutter]="24">
+
+        <div nz-col [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label nzRequired>Tên vai trò</nz-form-label>
+                <nz-form-control nzHasFeedback [nzErrorTip]="roleNameErrorTpl" nzValidatingTip="Đang kiểm tra...">
+                    <input nz-input placeholder="Tên vai trò" [(ngModel)]="roleDto.Name" type="text" formControlName="_ipText_roleName" />
+                    <ng-template #roleNameErrorTpl let-control>
+                        <ng-container *ngIf="control.hasError('required')">
+                            Tên vai trò không được trống!
+                        </ng-container>
+                        <ng-container *ngIf="control.hasError('duplicated')">
+                            Tên vai trò đã tồn tại!
+                        </ng-container>
+                    </ng-template>
+                </nz-form-control>
+
+            </nz-form-item>
+        </div>
+    </div>
+    <div nz-row [nzGutter]="24">
+
+        <div nz-col [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label>Mô tả</nz-form-label>
+                <nz-form-control>
+                    <textarea rows="4" nz-input [(ngModel)]="roleDto.Description" placeholder="Mô tả" formControlName="_ipText_roleDescription"></textarea>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+
+    <!-- <div nz-row [nzGutter]="24">
+
+        <div nz-col [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label>Trạng thái</nz-form-label>
+                <nz-form-control>
+                    <input nz-input [(ngModel)]="roleDto.Status" type="text" formControlName="_ipText_roleStatus" />
+
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div> -->
+
+
+    <div nz-row [nzGutter]="24">
+
+    </div>
+    <div *nzModalFooter>
+        <button nz-button nzType="default" (click)="handleCancelButton()">Hủy</button>
+        <button nz-button nzType="primary" [nzLoading]="isConfirmLoading" [disabled]="!validateForm.valid" (click)="handleSubmitButton()">Lưu</button>
+    </div>
+</form>

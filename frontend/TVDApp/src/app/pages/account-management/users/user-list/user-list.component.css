@@ -1,0 +1,14 @@
+td span [nz-icon] {
+    margin-right: 10px;
+    vertical-align: 0;
+}
+
+td span.active i,
+td span.active {
+    color: green;
+}
+
+td span.locked i,
+td span.locked {
+    color: red;
+}

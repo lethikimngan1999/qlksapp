@@ -1,0 +1,41 @@
+.wrap {
+    background-color: #f5f5f5;
+    padding: 24px;
+    display: flex;
+}
+
+.extra-content {
+    max-width: 240px;
+    text-align: left;
+    padding-right: 20px;
+}
+
+.content {
+    flex: 1;
+}
+
+.content [nz-descriptions] {
+    margin-bottom: 8px;
+}
+
+.content-link {
+    padding-top: 16px;
+}
+
+.content-link a {
+    display: inline-block;
+    vertical-align: text-top;
+    margin-right: 32px;
+}
+
+.content-link a img {
+    margin-right: 8px;
+}
+
+.ant-avatar.ant-avatar-icon {
+    margin-top: 16px;
+    margin-right: 16px;
+    width: 120px;
+    height: 120px;
+    font-size: 75px;
+}

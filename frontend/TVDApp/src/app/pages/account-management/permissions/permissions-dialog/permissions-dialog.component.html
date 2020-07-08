@@ -1,0 +1,68 @@
+<form nz-form class="ant-advanced-search-form" [formGroup]="validateForm">
+    <div nz-row [nzGutter]="24">
+        <div nz-col [nzSpan]="8">
+            <nz-form-item nzFlex>
+                <nz-form-label>Tên vai trò</nz-form-label>
+                <nz-form-control>
+                    <nz-select style="width: 200px;" nzShowSearch nzAllowClear nzPlaceHolder="Chọn vai trò" formControlName="_selectBox_Roles">
+                        <nz-option *ngFor="let item of listRoles" nzLabel="{{item.Name}}" nzValue="{{item.Id}}"></nz-option>
+                    </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="8">
+            <nz-form-item nzFlex>
+                <nz-form-label>Tên menu</nz-form-label>
+                <nz-form-control>
+                    <nz-select style="width: 200px;" nzShowSearch nzAllowClear nzPlaceHolder="Chọn menu" formControlName="_selectBox_Menus">
+                        <nz-option *ngFor="let item of listMenus" nzLabel="{{item.MenuName}}" nzValue="{{item.MenuId}}"></nz-option>
+                    </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+
+        <div nz-col [nzSpan]="4">
+            <nz-form-item nzFlex>
+                <button nz-button [nzType]="'primary'" style="margin: 4px;" (click)="addRoleMenu(validateForm.value)" [disabled]="!validateForm.valid">Thêm</button>
+            </nz-form-item>
+        </div>
+    </div>
+
+
+    <nz-table #roleMenuTable nzBordered [nzData]="listRoleMenu">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Tên vai trò</th>
+                <th>Tên menu</th>
+                <th>Đọc</th>
+                <th>Thêm</th>
+                <th>Cập nhật</th>
+                <th>Xóa</th>
+                <th>Nhập</th>
+                <th>Xuất</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of roleMenuTable.data; index as i; ">
+                <td>{{i+1}}</td>
+                <td>{{data.RoleName}}</td>
+                <td>{{data.MenuName}}</td>
+                <td nzShowCheckbox [(nzChecked)]="data.CanRead"></td>
+                <td nzShowCheckbox [(nzChecked)]="data.CanCreate"></td>
+                <td nzShowCheckbox [(nzChecked)]="data.CanUpdate"></td>
+                <td nzShowCheckbox [(nzChecked)]="data.CanDelete"></td>
+                <td nzShowCheckbox [(nzChecked)]="data.CanImport"></td>
+                <td nzShowCheckbox [(nzChecked)]="data.CanExport"></td>
+                <td>
+                    <a nz-button nzType="danger" nzGhost (click)="deleteItem(data.RoleId, data.MenuId)">Bỏ chọn</a>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+    <div *nzModalFooter>
+        <button nz-button nzType="default" (click)="handlCancel()">Hủy</button>
+        <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isSaveLoading">Lưu</button>
+    </div>
+</form>

@@ -1,0 +1,51 @@
+<nz-page-header>
+    <nz-page-header-title>{{pageTitle}}</nz-page-header-title>
+    <nz-page-header-extra>
+        <button nz-button nzType="default" nzShape="round" [routerLink]="'/employee-management'">
+        <i nz-icon nzType="arrow-left"></i>Quay lại danh sách nhân viên
+      </button>
+        <button nz-button nzType="primary" nzShape="round" *ngIf="hasEmployee" (click)="editEmployee(selectedEmployee)">
+       
+        <i nz-icon nzType="edit"></i>Sửa
+      </button>
+    </nz-page-header-extra>
+    <!--content-->
+    <nz-page-header-content *ngIf="hasEmployee">
+        <div class="wrap">
+            <div class="extra-content">
+                <nz-avatar nzIcon="user" nzSrc="{{selectedEmployee.Image}}"></nz-avatar>
+            </div>
+            <div class="content">
+                <div class="content">
+                    <nz-descriptions [nzColumn]="3">
+                        <nz-descriptions-item nzTitle="Số CMND" [nzSpan]="1">{{selectedEmployee.IdentityCardNumber}}
+                        </nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Họ và tên" [nzSpan]="1">{{selectedEmployee.LastName}} {{selectedEmployee.FirstName}}
+                        </nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Chức vụ" [nzSpan]="1">
+                            {{selectedEmployee.EmployeePositions.EmployeePositionName}}</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Ngày sinh" [nzSpan]="1">{{selectedEmployee.DateOfBirth | date :'dd/MM/yyyy'}}
+                        </nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Giới tính" [nzSpan]="1">
+                            <ng-container *ngIf="selectedEmployee.Gender == 'False'">
+                                Nam
+                            </ng-container>
+                            <ng-container *ngIf="selectedEmployee.Gender == 'True'">
+                                Nữ
+                            </ng-container>
+                        </nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="SĐT" [nzSpan]="1">{{selectedEmployee.PhoneNumber}}</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Địa chỉ" [nzSpan]="1">{{selectedEmployee.Address}}</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Email" [nzSpan]="1">{{selectedEmployee.Email}}</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Lương căn bản" [nzSpan]="1">{{selectedEmployee.BasicSalary |currency:'VND'}}
+                        </nz-descriptions-item>
+
+                        <nz-descriptions-item nzTitle="Ngày ký HĐLĐ" [nzSpan]="1">{{selectedEmployee.DateStartWork | date :'dd/MM/yyyy'}}
+                        </nz-descriptions-item>
+
+                    </nz-descriptions>
+                </div>
+            </div>
+        </div>
+    </nz-page-header-content>
+</nz-page-header>

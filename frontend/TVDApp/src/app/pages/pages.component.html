@@ -1,0 +1,54 @@
+<nz-layout class="app-layout">
+    <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+
+        <div class="sidebar-logo">
+            <a href="#" target="_blank">
+                <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+                <h1 style="margin-left: 20px; margin-top: 10px;"> NL Hotel</h1>
+            </a>
+        </div>
+        <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+            <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menus }"></ng-container>
+            <ng-template #menuTpl let-menus>
+                <ng-container *ngFor="let menu of menus">
+                    <li nzMatchRouter *ngIf="!menu.children" nz-menu-item [nzPaddingLeft]="menu.level * 24" [nzDisabled]="menu.disabled" [nzSelected]="menu.selected">
+                        <a routerLink="/{{ menu.path }}">{{ menu.title }}{{menu.children}}</a>
+                    </li>
+                    <li nzMatchRouter *ngIf="menu.children" nz-submenu [nzPaddingLeft]="menu.level * 24" [nzOpen]="menu.open" [nzTitle]="menu.title" [nzIcon]="menu.icon" [nzDisabled]="menu.disabled">
+                        <ul>
+                            <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menu.children }"></ng-container>
+                        </ul>
+                    </li>
+                </ng-container>
+            </ng-template>
+        </ul>
+    </nz-sider>
+    <nz-layout>
+        <nz-header style="background: #fff; padding:0;">
+            <i class="trigger" nz-icon [type]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="isCollapsed = !isCollapsed"></i>
+            <div class="profile">
+                <h6 class="displayname"><span>Xin chào, {{currentUser.UserName}}</span></h6>
+                <nz-button-group>
+                    <button nz-button nz-dropdown nzShape="circle" [nzDropdownMenu]="userMenu" nzPlacement="bottomRight">
+                    <i nz-icon nzType="user"></i>
+                  </button>
+                </nz-button-group>
+                <nz-dropdown-menu #userMenu="nzDropdownMenu">
+                    <ul nz-menu>
+                        <li nz-menu-item>Cập nhật tài khoản</li>
+                        <li nz-menu-item><a (click)="showModalChangePassword(currentUser)">Đổi mật khẩu</a>
+                        </li>
+                        <li nz-menu-divider></li>
+                        <li nz-menu-item><a (click)="logout()">Đăng xuất</a></li>
+                    </ul>
+                </nz-dropdown-menu>
+            </div>
+        </nz-header>
+        <nz-content>
+            <div class="inner-content">
+                <router-outlet></router-outlet>
+            </div>
+        </nz-content>
+        <nz-footer style="text-align: center;">{{pageFooter | uppercase}}</nz-footer>
+    </nz-layout>
+</nz-layout>

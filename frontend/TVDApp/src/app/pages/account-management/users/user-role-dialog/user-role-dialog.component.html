@@ -1,0 +1,21 @@
+<form nz-form [formGroup]="validateForm" class="ant-advanced-search-form">
+    <div nz-row [nzGutter]="24">
+        <div nz-col>
+            <nz-form-item>
+                <nz-form-label nzRequired>Tên vai trò</nz-form-label>
+                <nz-form-control>
+                    <nz-select [nzMaxTagCount]="3" nzMode="multiple" [nzMaxTagPlaceholder]="tagPlaceHolder" nzPlaceHolder="Please select" [(ngModel)]="roleIds" formControlName="_selectBox_role" Vui lòng chọn vai trò cho tài khoản>
+                        <ng-container *ngFor="let option of modelRoleModal">
+                            <nz-option [nzLabel]="option.name" [nzValue]="option.id"></nz-option>
+                        </ng-container>
+                    </nz-select>
+                    <ng-template #tagPlaceHolder let-selectedList> and {{ selectedList.length }} more selected </ng-template>
+
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+    <div *nzModalFooter>
+        <button nz-button [nzType]="'primary'" (click)="addRole()" [disabled]="!validateForm.valid">Lưu</button>
+    </div>
+</form>
