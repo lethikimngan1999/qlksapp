@@ -557,7 +557,7 @@ export const MENUS_ACCOUNTANTS_SIDEBAR: MenuSideBar[] = [
             {
                 id: '11111',
                 level: 2,
-                title: 'Thống kê - Báo cáo',
+                title: 'Thống kê - Báocáo',
                 path: '', // home
                 icon: 'user',
                 selected: false,
