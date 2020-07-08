@@ -497,7 +497,7 @@ export const MENUS_BUSSINESSMANAGER_SIDEBAR: MenuSideBar[] = [
     {
         id: '11111',
         level: 1,
-        title: 'Quản lý đặt phòng',
+        title: 'Quản lý đặt phòng1',
         path: '',
         icon: 'team',
         open: false,
