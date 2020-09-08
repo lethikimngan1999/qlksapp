@@ -7,9 +7,6 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
-import { TinhtrangListComponent } from './qldatphong/tinhtrang-list/tinhtrang-list.component';
-
-
 
 import { EmployeeListComponent } from './employee-management/employee-list/employee-list.component';
 import { EmployeeDetailComponent } from './employee-management/employee-detail/employee-detail.component';
@@ -26,6 +23,7 @@ import { SharedModule } from '../shared/shared-module';
 import { HotelServiceListComponent } from './category-management/hotel-services/hotel-service-list/hotel-service-list.component';
 import { RoomTypeListComponent } from './category-management/room-type/room-type-list/room-type-list.component';
 import { RoomListComponent } from './booking-management/room-management/room-list/room-list.component';
+import { RoomStatusComponent } from './booking-management/room-management/room-status/room-status.component';
 
 const routes: Routes = [
   {
@@ -89,8 +87,8 @@ const routes: Routes = [
       //   component: KhachhangChitietComponent
       // },
        {
-        path: 'qldatphong',
-        component: TinhtrangListComponent
+        path: 'room-status',
+        component: RoomStatusComponent
       },
       {
         path: 'exception', loadChildren: () => ExceptionModule,

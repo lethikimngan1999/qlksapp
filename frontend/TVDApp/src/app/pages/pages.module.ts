@@ -13,11 +13,6 @@ import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
-
-import { TinhtrangListComponent } from './qldatphong/tinhtrang-list/tinhtrang-list.component';
-import { ChitietphongComponent } from './qldatphong/chitietphong/chitietphong.component';
-
-
 import { EmployeeDetailComponent } from './employee-management/employee-detail/employee-detail.component';
 import { EmployeeDialogComponent } from './employee-management/employee-dialog/employee-dialog.component';
 import { EmployeeListComponent } from './employee-management/employee-list/employee-list.component';
@@ -45,6 +40,7 @@ import { HotelServiceListComponent } from './category-management/hotel-services/
 import { HotelServiceDialogComponent } from './category-management/hotel-services/hotel-service-dialog/hotel-service-dialog.component';
 import { RoomTypeListComponent } from './category-management/room-type/room-type-list/room-type-list.component';
 import { RoomListComponent } from './booking-management/room-management/room-list/room-list.component';
+import { RoomStatusComponent } from './booking-management/room-management/room-status/room-status.component';
 
 
 
@@ -55,8 +51,7 @@ import { RoomListComponent } from './booking-management/room-management/room-lis
   // tslint:disable-next-line: max-line-length
   declarations: [
     PagesComponent,
-    TinhtrangListComponent,
-    ChitietphongComponent,
+    RoomStatusComponent,
    EmployeepositionDialogComponent,
     EmployeeDetailComponent,
     EmployeeDialogComponent,
@@ -81,6 +76,7 @@ import { RoomListComponent } from './booking-management/room-management/room-lis
     HotelServiceDialogComponent,
     RoomTypeListComponent,
     RoomListComponent,
+    RoomStatusComponent,
     ],
   imports: [
     CommonModule,

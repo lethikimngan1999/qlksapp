@@ -27,7 +27,7 @@ export const MENUS_SIDEBAR: MenuSideBar[] = [
                 id: '11111',
                 level: 2,
                 title: 'Tình trạng phòng',
-                path: 'qldatphong', // home
+                path: 'room-status', // home
                 icon: 'user',
                 selected: false,
                 disabled: false,
@@ -224,7 +224,7 @@ export const MENUS_RECEPTION_SIDEBAR: MenuSideBar[] = [
                 id: '11111',
                 level: 2,
                 title: 'Tình trạng phòng',
-                path: 'qldatphong', // home
+                path: 'room-status', // home
                 icon: 'user',
                 selected: false,
                 disabled: false,
@@ -450,7 +450,7 @@ export const MENUS_BUSSINESSMANAGER_SIDEBAR: MenuSideBar[] = [
                 id: '11111',
                 level: 2,
                 title: 'Tình trạng phòng',
-                path: 'qldatphong', // home
+                path: 'room-status', // home
                 icon: 'user',
                 selected: false,
                 disabled: false,
